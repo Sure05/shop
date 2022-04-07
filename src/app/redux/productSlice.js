@@ -30,6 +30,9 @@ export const productSlice = createSlice({
 	reducers: {
 		searchPhone: (state, action) => {
 			state.search = action.payload
+		},
+		clearFilter: (state) => {
+			state.search = ''
 		}
 	},
 	extraReducers: builder => {
@@ -45,6 +48,6 @@ export const productSlice = createSlice({
 	}
 })
 
-export const {searchPhone} = productSlice.actions
+export const {searchPhone, clearFilter} = productSlice.actions
 
 export default productSlice.reducer

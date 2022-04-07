@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Button, Grid} from "@mui/material";
 import CardTemplate from "../components/cardTemplate";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMoreProducts, fetchProducts} from "../redux/productSlice";
+import {clearFilter, fetchMoreProducts, fetchProducts} from "../redux/productSlice";
 import CheckoutButton from "../components/checkoutButton";
 import CategoryList from "../components/categoryList";
 import {useParams} from "react-router-dom";
@@ -16,6 +16,11 @@ function CatalogPage(props) {
 	useEffect(() => {
 		dispatch(fetchProducts(categoryId ?? null))
 	}, [categoryId, dispatch])
+	
+	
+	useEffect(() => {
+		dispatch(clearFilter())
+	}, [dispatch, categoryId])
 	
 	const loadMore = () => dispatch(fetchMoreProducts(phones.length))
 	const list = getPhones(phones, search);

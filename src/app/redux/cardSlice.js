@@ -1,7 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
-
 let initialState = {
 	list: [],
 	total: 0,
@@ -44,10 +42,17 @@ const cardSlice = createSlice({
 				total,
 				totalPrice
 			}
+		},
+		clear: state => {
+			return {
+				list: [],
+				total: 0,
+				totalPrice: 0
+			}
 		}
 	}
 });
 
-export const {addToCard, dropProductFromCard} = cardSlice.actions
+export const {addToCard, dropProductFromCard, clear} = cardSlice.actions
 
 export default cardSlice.reducer;

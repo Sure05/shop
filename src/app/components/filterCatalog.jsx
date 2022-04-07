@@ -1,10 +1,11 @@
 import React from 'react';
 import {Card, CardContent, CardHeader, TextField} from "@mui/material";
-import {useDispatch} from "react-redux";
-import {searchPhone} from "../redux/productSlice";
+import {useDispatch, useSelector} from "react-redux";
+import products, {searchPhone} from "../redux/productSlice";
 
 function FilterCatalog(props) {
 	const dispatch = useDispatch();
+	const search = useSelector(state => state.products.search)
 	const searchByName = (e) => {
 		dispatch(searchPhone(e.target.value))
 	}
@@ -13,7 +14,7 @@ function FilterCatalog(props) {
 		<Card {...props}>
 			<CardHeader title={"Filter"}/>
 			<CardContent>
-				<TextField onChange={searchByName} fullWidth label="Search" variant="outlined" />
+				<TextField onChange={searchByName} value={search} fullWidth label="Search" variant="outlined" />
 			</CardContent>
 		</Card>
 	);
