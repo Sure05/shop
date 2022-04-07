@@ -1,25 +1,26 @@
 import React from 'react';
 import {Alert, Slide, Snackbar} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {hideSnackBar} from "../redux/snackBarSlice";
+import {hideSnackBar} from "../../redux/snackBarSlice";
 
 function TransitionLeft(props) {
 	return <Slide {...props} direction="left" />;
 }
 
-function SnackBar(props) {
-	const {show, text} = useSelector(state => state.snackbar);
+function SnackBar({id, type, text}) {
 	const dispatch = useDispatch()
-	const handleClose = () =>dispatch(hideSnackBar())
+	const handleClose = () =>dispatch(hideSnackBar(id))
 	return (
 		<Snackbar
-			open={show}
+			open
+			aria-multiline
+			key={id}
 			autoHideDuration={6000}
 			onClose={handleClose}
 			TransitionComponent={TransitionLeft}
-			anchorOrigin={{ vertical: 'top', horizontal: "right" }}
+			anchorOrigin={{ vertical: 'bottom', horizontal: "right" }}
 		>
-			<Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+			<Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
 				{text}
 			</Alert>
 		</Snackbar>

@@ -1,21 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState = {
-	text: '',
-	show: false
-}
+const initialState = []
 
 const snackBarSlice = createSlice({
 	name: 'snackBar',
 	initialState,
 	reducers: {
 		showSuccessSnackBar: (state, action) => {
-			state.text = action.payload;
-			state.show = true;
+			state.push(action.payload)
 		},
-		hideSnackBar: state => {
-			state.show = false
-			state.text = ''
+		hideSnackBar: (state, action) => {
+			return state.filter(el => el.id !== action.payload)
 		}
 	}
 })
