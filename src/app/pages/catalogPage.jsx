@@ -17,11 +17,6 @@ function CatalogPage(props) {
 		dispatch(fetchProducts(categoryId ?? null))
 	}, [categoryId, dispatch])
 	
-	
-	useEffect(() => {
-		dispatch(clearFilter())
-	}, [dispatch, categoryId])
-	
 	const loadMore = () => dispatch(fetchMoreProducts(phones.length))
 	const list = getPhones(phones, search);
 	return (

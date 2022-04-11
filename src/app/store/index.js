@@ -1,18 +1,19 @@
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
-// import thunkMiddleware from 'redux-thunk';
-// import { composeWithDevTools } from 'redux-devtools-extension';
 import products from "../redux/productSlice";
 import card from "../redux/cardSlice";
 import categories from "../redux/categoriesSlice";
 import snackbar from "../redux/snackBarSlice";
+import auth from "../redux/authSlice";
 import {setToLocalStorage} from "../middleware/localStorage";
 import {snackBarMiddleware} from "../middleware/snackBar";
+import {fetchingCategory} from "../middleware/fetchCategory";
 
 const rootReducer = {
 	products,
 	card,
 	categories,
-	snackbar
+	snackbar,
+	auth
 }
 
 export default function configureAppStore(preloadedState) {
@@ -22,7 +23,7 @@ export default function configureAppStore(preloadedState) {
 	
 	return configureStore({
 		reducer: rootReducer,
-		middleware: [snackBarMiddleware, setToLocalStorage, ...getDefaultMiddleware()],
+		middleware: [fetchingCategory, snackBarMiddleware, setToLocalStorage, ...getDefaultMiddleware()],
 		preloadedState,
 	})
 }

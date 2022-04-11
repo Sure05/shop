@@ -16,3 +16,8 @@ code {
 .MuiDataGrid-root .MuiDataGrid-cell:focus {
   outline: none !important;
 }
+
+img {
+  width: 100%;
+  height: auto;
+}

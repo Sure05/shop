@@ -15,13 +15,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {dropProductFromCard, clear} from "../redux/cardSlice";
 
+const TotalStyled = {
+	display: "flex",
+	justifyContent: "flex-end",
+	paddingTop: 10
+}
 
 function CheckoutPage(props) {
 	const {list, totalPrice} = useSelector(state => state.card);
 	const dispatch = useDispatch()
 	
-	const dropPhoneById = (id) => {
-		dispatch(dropProductFromCard(id))
+	const dropPhoneById = ({id, name}) => {
+		dispatch(dropProductFromCard({id, name}))
 	}
 	const clearCard = () => {
 		dispatch(clear())
@@ -58,7 +63,7 @@ function CheckoutPage(props) {
 													<TableCell>{row.price}</TableCell>
 													<TableCell>{row.count}</TableCell>
 													<TableCell>
-														<Button onClick={() => dropPhoneById(row.id)} variant={"outlined"}
+														<Button onClick={() => dropPhoneById(row)} variant={"outlined"}
 														        color={"warning"}>
 															Drop
 														</Button>
@@ -68,7 +73,9 @@ function CheckoutPage(props) {
 										</TableBody>
 									</Table>
 								</TableContainer>
-								total: {totalPrice}
+								<div style={TotalStyled} className="Total">
+									Total: ${totalPrice}
+								</div>
 							</>
 						) : 'Card is empty'}
 						

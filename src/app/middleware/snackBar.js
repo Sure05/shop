@@ -15,14 +15,14 @@ export const snackBarMiddleware = store => next => action => {
 		case 'card/dropProductFromCard':
 			store.dispatch(showSuccessSnackBar({
 				id: uuidv4(),
-				text: 'Product removed from card',
+				text: `Product ${action.payload.name} removed from card`,
 				type: "warning"
 			}))
 			break;
 		case 'card/addToCard':
 			store.dispatch(showSuccessSnackBar({
 				id: uuidv4(),
-				text: 'Success added to card',
+				text: `Success added ${action.payload.name} to card`,
 				type: "success"
 			}))
 			break;
